@@ -36,6 +36,7 @@
   --color-cream: var(--cream);
   --color-copper: var(--copper);
   --color-teal-deep: var(--teal-deep);
+  --color-teal-darker: var(--teal-darker);
 }
 
 :root {
