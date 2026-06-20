@@ -227,8 +227,8 @@ function Hero() {
           <span className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/5 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-cream/80">
             <Sparkles className="h-3.5 w-3.5 text-copper" /> Award-winning tech agency
           </span>
-          <h1 className="mt-6 font-display text-5xl md:text-7xl font-bold leading-[1.02] text-balance text-cream">
-            Guardians of your <span className="text-copper">digital</span> growth.
+          <h1 className="mt-6 font-display text-5xl md:text-7xl font-extrabold leading-[1.02] tracking-tight text-balance text-cream">
+            Guardians of your <span className="text-copper">digital growth</span>.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-cream/75 leading-relaxed">
             From SEO and paid media to web, mobile and design — Gadgets Guardians is the
