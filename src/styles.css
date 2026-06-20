@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -90,8 +90,8 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    font-weight: 500;
+    letter-spacing: -0.025em;
+    font-weight: 700;
   }
 }
 
@@ -101,3 +101,24 @@
 @utility shadow-elegant { box-shadow: var(--shadow-elegant); }
 @utility shadow-card-soft { box-shadow: var(--shadow-card); }
 @utility shadow-copper { box-shadow: var(--shadow-copper); }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(1.5deg); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-float-slow { animation: float-slow 7s ease-in-out infinite; }
+.animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 5s ease-in-out infinite; }
+.animate-marquee { animation: marquee 35s linear infinite; }
