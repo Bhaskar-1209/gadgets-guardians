@@ -136,11 +136,14 @@ function Home() {
       <Pricing />
       <WhyUs />
       <VideoTestimonials />
+      <Testimonials />
       <Process />
       <WorldMap />
+      <FAQ />
       <Blog />
       <CTA />
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }
