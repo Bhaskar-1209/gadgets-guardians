@@ -736,3 +736,149 @@ function Footer() {
     </footer>
   );
 }
+
+/* ------------------------------ TESTIMONIALS (written) ------------------------------ */
+function Testimonials() {
+  const items = [
+    {
+      quote:
+        "Gadgets Guardians transformed our online presence. Within 6 months our organic traffic tripled and inbound leads are now our #1 channel.",
+      name: "Amanda Rivera",
+      role: "Founder, NorthPeak Studio",
+      img: testimonial1,
+    },
+    {
+      quote:
+        "The team is incredibly responsive and data-driven. Their PPC overhaul cut our CPL by 47% while doubling qualified demos.",
+      name: "Rohan Mehta",
+      role: "Head of Growth, FinEdge",
+      img: testimonial2,
+    },
+    {
+      quote:
+        "From rebranding to a full Shopify rebuild — they handled it end-to-end. Best agency partnership we've ever had, hands down.",
+      name: "Dyllan Dalya",
+      role: "Owner, AutoDD",
+      img: testimonial3,
+    },
+  ];
+  return (
+    <section id="reviews" className="py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-accent">What clients say</p>
+          <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold text-balance">
+            Loved by <span className="text-accent">200+ brands</span> worldwide.
+          </h2>
+        </div>
+        <div className="mt-14 grid md:grid-cols-3 gap-6">
+          {items.map((t) => (
+            <div key={t.name} className="rounded-2xl bg-card border border-border p-7 shadow-card-soft hover:shadow-elegant transition flex flex-col">
+              <Quote className="h-8 w-8 text-accent/70" />
+              <p className="mt-5 text-foreground/85 leading-relaxed flex-1">"{t.quote}"</p>
+              <div className="mt-6 flex items-center gap-2 text-accent">
+                {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+              </div>
+              <div className="mt-5 flex items-center gap-3 pt-5 border-t border-border">
+                <img src={t.img} alt={t.name} className="h-12 w-12 rounded-full object-cover" />
+                <div>
+                  <div className="font-display font-bold">{t.name}</div>
+                  <div className="text-xs text-muted-foreground">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ FAQ ------------------------------ */
+function FAQ() {
+  const faqs = [
+    {
+      q: "What services does Gadgets Guardians offer?",
+      a: "We're a full-stack tech agency covering Digital Marketing (SEO, SEM, SMM, PPC, Email, ORM, Influencer, CRM), Web Development, Mobile App Development, Web Designing and Graphic Designing — all under one roof.",
+    },
+    {
+      q: "How much do your services cost?",
+      a: "Our plans start from $200/month for PPC and Link Building, $250/mo for SEO, $300/mo for AI SEO and $350/mo for Full-Stack Digital Marketing. Custom enterprise plans are also available.",
+    },
+    {
+      q: "How long does it take to see results from SEO?",
+      a: "SEO is a compounding investment. Most clients start seeing meaningful ranking and traffic improvements within 3–6 months, with strong ROI typically arriving between months 6–12.",
+    },
+    {
+      q: "Do you work with international clients?",
+      a: "Yes! We currently serve clients in 15+ countries including the US, UK, Canada, Australia, UAE, Singapore, Germany and more — with 24/7 dedicated account managers.",
+    },
+    {
+      q: "Will I get reports of the work done?",
+      a: "Absolutely. You'll receive transparent weekly progress updates and detailed monthly reports covering KPIs, deliverables, traffic, rankings and ROI.",
+    },
+    {
+      q: "Do you build websites and mobile apps too?",
+      a: "Yes — we build production-grade websites in React, Next.js, Shopify and WordPress, plus native iOS / Android and cross-platform Flutter & React Native mobile apps.",
+    },
+  ];
+  return (
+    <section id="faq" className="py-24 bg-muted/40">
+      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12">
+        <div className="lg:col-span-4">
+          <p className="text-xs uppercase tracking-[0.25em] text-accent">FAQs</p>
+          <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold text-balance leading-tight">
+            Questions? <span className="text-accent">We've got</span> answers.
+          </h2>
+          <p className="mt-5 text-muted-foreground">
+            Can't find what you're looking for? Reach out and our team will get back within 24 hours.
+          </p>
+          <a
+            href="https://wa.me/910000000000"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-copper-gradient text-white px-6 py-3 text-sm font-semibold shadow-copper hover:scale-[1.02] transition"
+          >
+            <MessageCircle className="h-4 w-4" /> Ask on WhatsApp
+          </a>
+        </div>
+        <div className="lg:col-span-8 space-y-3">
+          {faqs.map((f, i) => (
+            <details
+              key={f.q}
+              className="group rounded-2xl bg-card border border-border p-6 open:shadow-card-soft transition"
+              {...(i === 0 ? { open: true } : {})}
+            >
+              <summary className="flex items-center justify-between gap-6 cursor-pointer list-none">
+                <span className="font-display text-base md:text-lg font-bold text-foreground">{f.q}</span>
+                <span className="h-9 w-9 shrink-0 rounded-full bg-accent/10 text-accent flex items-center justify-center group-open:bg-accent group-open:text-white transition">
+                  <Plus className="h-4 w-4 group-open:rotate-45 transition-transform" />
+                </span>
+              </summary>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ WHATSAPP FLOATING BUTTON ------------------------------ */
+function WhatsAppFloat() {
+  return (
+    <a
+      href="https://wa.me/910000000000?text=Hi%20Gadgets%20Guardians%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+      className="fixed bottom-6 right-6 z-50 group"
+    >
+      <span className="absolute inset-0 rounded-full bg-emerald-500/60 animate-ping" />
+      <span className="relative flex items-center gap-2.5 rounded-full bg-emerald-500 text-white pl-4 pr-5 py-3.5 shadow-[0_18px_40px_-12px_rgba(16,185,129,0.6)] hover:bg-emerald-600 transition">
+        <svg viewBox="0 0 32 32" className="h-6 w-6 fill-current" aria-hidden="true">
+          <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.385.694 4.605 1.89 6.473L4 29l7.71-1.86A11.93 11.93 0 0 0 16 27c6.627 0 12-5.373 12-12S22.628 3 16.001 3Zm0 21.6c-1.71 0-3.36-.45-4.815-1.305l-.345-.21-4.575 1.11 1.155-4.41-.225-.36A9.55 9.55 0 0 1 6.4 15c0-5.295 4.305-9.6 9.6-9.6s9.6 4.305 9.6 9.6-4.304 9.6-9.6 9.6Zm5.355-7.155c-.285-.15-1.695-.84-1.96-.93-.27-.105-.465-.15-.66.15-.21.285-.765.93-.93 1.125-.18.18-.345.21-.63.075-.285-.15-1.215-.45-2.31-1.425a8.7 8.7 0 0 1-1.605-1.995c-.165-.285-.015-.45.135-.585.135-.135.285-.345.435-.51.135-.18.18-.285.285-.495.105-.21.045-.39-.015-.54-.075-.15-.66-1.59-.9-2.16-.24-.585-.495-.495-.66-.495h-.555c-.18 0-.495.075-.75.36-.27.285-1.005.99-1.005 2.4 0 1.41 1.035 2.79 1.17 2.985.15.195 2.04 3.105 4.965 4.35 1.755.75 2.43.825 3.3.69.525-.09 1.695-.69 1.935-1.365.24-.66.24-1.23.165-1.365-.075-.135-.27-.21-.555-.36Z" />
+        </svg>
+        <span className="hidden sm:inline text-sm font-semibold">Chat with us</span>
+      </span>
+    </a>
+  );
+}
