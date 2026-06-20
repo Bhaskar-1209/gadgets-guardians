@@ -80,6 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Gadgets Guardians" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "Lovable App" },
+      { property: "og:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "description", content: "Gadget Guardians offers professional digital marketing, web, and mobile development services." },
+      { property: "og:description", content: "Gadget Guardians offers professional digital marketing, web, and mobile development services." },
+      { name: "twitter:description", content: "Gadget Guardians offers professional digital marketing, web, and mobile development services." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d299566-17aa-40db-9472-f5461560ada7/id-preview-222d5a73--6da098c7-33b9-4988-952d-43d008e60a6c.lovable.app-1781950527071.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d299566-17aa-40db-9472-f5461560ada7/id-preview-222d5a73--6da098c7-33b9-4988-952d-43d008e60a6c.lovable.app-1781950527071.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -87,7 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),
