@@ -32,6 +32,8 @@ import {
   Linkedin,
   ArrowUpRight,
   Briefcase,
+  Plus,
+  Quote,
 } from "lucide-react";
 import ggLogo from "@/assets/gg-logo.png.asset.json";
 import heroBg from "@/assets/hero-bg.jpg";
