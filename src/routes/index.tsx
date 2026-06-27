@@ -176,8 +176,10 @@ function Header() {
       </div>
       {/* Main nav */}
       <div className="bg-background/95 backdrop-blur-md border-b border-border">
-        <div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-3">
-          <a href="/" className="flex items-center gap-3 shrink-0">
+        {/* <div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-3"> */}
+        <div className="mx-auto max-w-[1500px] flex items-center gap-6 px-6 py-4">
+          {/* <a href="/" className="flex items-center gap-3 shrink-0"> */}
+          <a href="/" className="flex items-center gap-3 flex-shrink-0">
             <img src={ggLogo.url} alt="Gadgets Guardians logo" className="h-11 w-11 rounded-lg object-cover" />
             <div className="leading-tight">
               <div className="font-display text-lg md:text-xl font-bold text-foreground">
@@ -186,21 +188,38 @@ function Header() {
               <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground hidden sm:block">Tech & Digital Marketing</div>
             </div>
           </a>
-          <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border bg-card/60 px-2 py-1.5 text-sm">
+          {/* <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border bg-card/60 px-2 py-1.5 text-sm"> */}
+            {/* <nav className="hidden xl:flex items-center gap-3 rounded-full border border-border bg-card/60 px-5 py-3 flex-1 mx-8"> */}
+            <nav className="hidden lg:flex flex-1 justify-center items-center mx-8">
             {navItems.map((n, i) => (
+              // <a
+              //   key={n}
+              //   href={`#${n.toLowerCase().replace(/\s+/g, "-")}`}
+              //   className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition ${
+              //     i === 0 ? "bg-primary text-primary-foreground" : "hover:bg-muted text-foreground/80"
+              //   }`}
+              // >
+              //   {n}
+              //   {i > 0 && i < 6 && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
+              // </a>
               <a
                 key={n}
                 href={`#${n.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition ${
-                  i === 0 ? "bg-primary text-primary-foreground" : "hover:bg-muted text-foreground/80"
+                className={`flex items-center gap-1 whitespace-nowrap px-4 py-2 rounded-full transition ${
+                  i === 0
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-muted text-foreground/80"
                 }`}
               >
                 {n}
-                {i > 0 && i < 6 && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
+                {i > 0 && i < 6 && (
+                  <ChevronDown className="h-4 w-4 opacity-60" />
+                )}
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2"> */}
+          <div className="flex items-center gap-3 flex-shrink-0">
             <a href="#contact" className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:bg-emerald-600 transition">
               Contact Us
             </a>
@@ -257,6 +276,7 @@ function Hero() {
               <img
                 src={heroBg}
                 alt="Digital marketing dashboards and growth ecosystem"
+                loading="eager"
                 width={1536}
                 height={1280}
                 className="relative rounded-3xl border border-cream/10 shadow-elegant w-full"
@@ -290,7 +310,16 @@ function Hero() {
 
 /* ------------------------------ TRUST ------------------------------ */
 function TrustStrip() {
-  const logos = ["Shopify", "HubSpot", "Google Ads", "Meta", "WordPress", "Webflow", "Salesforce", "AWS"];
+  const logos = [
+    "Shopify",
+    "HubSpot",
+    "Google Ads",
+    "Meta",
+    "WordPress",
+    "Webflow",
+    "Salesforce",
+    "AWS",
+  ];
   return (
     <section className="border-y border-border bg-card overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-center gap-6">
