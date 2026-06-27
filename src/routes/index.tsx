@@ -182,18 +182,39 @@ function Header() {
       {/* Main nav */}
       <div className="bg-background/95 backdrop-blur-md border-b border-border">
         {/* <div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-3"> */}
-        <div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-4">
+        {/* <div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-4"> */}
+        {/* <div className="mx-auto max-w-[1500px] flex items-center gap-6 px-4 lg:px-8 py-4"> */}
+        <div className="mx-auto max-w-[1500px] flex items-center justify-between px-4 lg:px-8 py-3">
           {/* <a href="/" className="flex items-center gap-3 shrink-0"> */}
-          <a href="/" className="flex items-center gap-3 flex-shrink-0">
-            <img src={ggLogo.url} alt="Gadgets Guardians logo" className="h-9 w-9 md:h-11 md:w-11 rounded-lg object-cover" />
-            <div className="leading-tight">
-              <div className="font-display text-base md:text-xl font-bold text-foreground">
+          {/* <a href="/" className="flex items-center gap-3 flex-shrink-0"> */}
+          <a
+  href="/"
+  // className="flex items-center gap-3 w-auto lg:w-[280px] flex-shrink-0"
+   className="flex flex-1 lg:flex-none items-center gap-2 min-w-0"
+>
+            <img src={ggLogo.url} alt="Gadgets Guardians logo" 
+            // className="h-9 w-9 md:h-11 md:w-11 rounded-lg object-cover" 
+              className="h-8 w-8 lg:h-11 lg:w-11 rounded-lg object-contain flex-shrink-0"
+            />
+            {/* <div className="leading-tight"> */}
+            <div className="leading-tight min-w-0">
+              {/* <div className="font-display text-base md:text-xl font-bold text-foreground"> */}
+              {/* <div className="font-display text-lg lg:text-xl font-bold text-foreground truncate">
                 Gadgets <span className="text-accent">Guardians</span>
-              </div>
-              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground hidden sm:block">Tech & Digital Marketing</div>
+              </div> */}
+              <div className="font-display font-bold text-foreground">
+  <span className="text-lg lg:text-xl">
+    Gadgets
+  </span>
+
+  <span className="hidden sm:inline text-accent text-lg lg:text-xl">
+    {" "}Guardians
+  </span>
+</div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground hidden lg:block">Tech & Digital Marketing</div>
             </div>
           </a>
-          <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border bg-card/60 px-2 py-1.5 text-sm">
+          {/* <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border bg-card/60 px-2 py-1.5 text-sm">
             {navItems.map((n, i) => (
               <a
                 key={n}
@@ -206,8 +227,35 @@ function Header() {
                 {i > 0 && i < 6 && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
               </a>
             ))}
-          </nav>
-          <div className="flex items-center gap-2">
+          </nav> */}
+          <nav className="hidden lg:flex flex-1 justify-center">
+  <div className="flex items-center gap-1 rounded-full border border-border bg-card px-2 py-2">
+
+    {navItems.map((n, i) => (
+
+      <a
+        key={n}
+        href={`#${n.toLowerCase().replace(/\s+/g, "-")}`}
+        className={`flex items-center gap-1 whitespace-nowrap rounded-full px-4 py-2 text-[15px] font-medium transition-all duration-300 ${
+          i === 0
+            ? "bg-primary text-white"
+            : "hover:bg-muted"
+        }`}
+      >
+        {n}
+
+        {i > 0 && i < 6 && (
+          <ChevronDown className="h-4 w-4" />
+        )}
+
+      </a>
+
+    ))}
+
+  </div>
+</nav>
+          {/* <div className="flex items-center gap-2"> */}
+          {/* <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <a href="#contact" className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:bg-emerald-600 transition">
               Contact Us
             </a>
@@ -245,7 +293,53 @@ function Header() {
                 </div>
               </SheetContent>
             </Sheet>
-          </div>
+          </div> */}
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+  <a
+    href="#contact"
+    className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500 text-white px-4 py-2 text-sm font-semibold"
+  >
+    Contact Us
+  </a>
+
+  <a
+    href="#contact"
+    className="inline-flex items-center gap-1.5 rounded-full bg-copper-gradient text-white px-4 py-2 text-sm font-semibold"
+  >
+    <Calendar className="h-4 w-4" />
+    Book a Meeting
+  </a>
+</div>
+{/* <div className="lg:hidden"> */}
+<div className="lg:hidden flex-shrink-0 ml-3">
+  <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+    <SheetTrigger asChild>
+      <button
+        aria-label="Open menu"
+        className="rounded-lg border border-border p-2"
+      >
+        <Menu className="h-6 w-6" />
+      </button>
+    </SheetTrigger>
+
+    <SheetContent side="left" className="w-[300px]">
+      <div className="flex flex-col gap-6 mt-6">
+
+        {navItems.map((item) => (
+          <a
+            key={item}
+            href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+            onClick={() => setIsMenuOpen(false)}
+            className="text-lg font-medium"
+          >
+            {item}
+          </a>
+        ))}
+
+      </div>
+    </SheetContent>
+  </Sheet>
+</div>
         </div>
       </div>
     </header>
