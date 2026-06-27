@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight,
+  Menu,
   Search,
   MousePointerClick,
   Share2,
@@ -35,6 +36,8 @@ import {
   Plus,
   Quote,
 } from "lucide-react";
+import * as React from "react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import ggLogo from "@/assets/gg-logo.png.asset.json";
 import heroBg from "@/assets/hero-bg.jpg";
 import officePoster from "@/assets/office-video-poster.jpg";
@@ -150,11 +153,13 @@ function Home() {
 
 /* ------------------------------ HEADER ------------------------------ */
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const navItems = ["Home", "Who We Are", "Services", "AI", "Digital Marketing", "Case Studies", "Resources"];
   return (
     <header className="sticky top-0 z-50">
       {/* Top utility bar */}
-      <div className="bg-teal-darker text-cream/90 text-xs">
+      {/* <div className="bg-teal-darker text-cream/90 text-xs"> */}
+      <div className="hidden md:block bg-teal-darker text-cream/90 text-xs">
         <div className="mx-auto max-w-7xl flex flex-wrap items-center justify-between px-4 md:px-6 py-2.5 gap-3">
           <div className="flex items-center gap-2">
             <Trophy className="h-3.5 w-3.5 text-copper" />
@@ -177,55 +182,69 @@ function Header() {
       {/* Main nav */}
       <div className="bg-background/95 backdrop-blur-md border-b border-border">
         {/* <div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-3"> */}
-        <div className="mx-auto max-w-[1500px] flex items-center gap-6 px-6 py-4">
+        <div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-4">
           {/* <a href="/" className="flex items-center gap-3 shrink-0"> */}
           <a href="/" className="flex items-center gap-3 flex-shrink-0">
-            <img src={ggLogo.url} alt="Gadgets Guardians logo" className="h-11 w-11 rounded-lg object-cover" />
+            <img src={ggLogo.url} alt="Gadgets Guardians logo" className="h-9 w-9 md:h-11 md:w-11 rounded-lg object-cover" />
             <div className="leading-tight">
-              <div className="font-display text-lg md:text-xl font-bold text-foreground">
+              <div className="font-display text-base md:text-xl font-bold text-foreground">
                 Gadgets <span className="text-accent">Guardians</span>
               </div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground hidden sm:block">Tech & Digital Marketing</div>
             </div>
           </a>
-          {/* <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border bg-card/60 px-2 py-1.5 text-sm"> */}
-            {/* <nav className="hidden xl:flex items-center gap-3 rounded-full border border-border bg-card/60 px-5 py-3 flex-1 mx-8"> */}
-            <nav className="hidden lg:flex flex-1 justify-center items-center mx-8">
+          <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border bg-card/60 px-2 py-1.5 text-sm">
             {navItems.map((n, i) => (
-              // <a
-              //   key={n}
-              //   href={`#${n.toLowerCase().replace(/\s+/g, "-")}`}
-              //   className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition ${
-              //     i === 0 ? "bg-primary text-primary-foreground" : "hover:bg-muted text-foreground/80"
-              //   }`}
-              // >
-              //   {n}
-              //   {i > 0 && i < 6 && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
-              // </a>
               <a
                 key={n}
                 href={`#${n.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`flex items-center gap-1 whitespace-nowrap px-4 py-2 rounded-full transition ${
-                  i === 0
-                    ? "bg-primary text-primary-foreground"
-                    : "hover:bg-muted text-foreground/80"
+                className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition ${
+                  i === 0 ? "bg-primary text-primary-foreground" : "hover:bg-muted text-foreground/80"
                 }`}
               >
                 {n}
-                {i > 0 && i < 6 && (
-                  <ChevronDown className="h-4 w-4 opacity-60" />
-                )}
+                {i > 0 && i < 6 && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
               </a>
             ))}
           </nav>
-          {/* <div className="flex items-center gap-2"> */}
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex items-center gap-2">
             <a href="#contact" className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:bg-emerald-600 transition">
               Contact Us
             </a>
             <a href="#contact" className="inline-flex items-center gap-1.5 rounded-full bg-copper-gradient text-white px-4 py-2 text-sm font-semibold hover:opacity-95 transition shadow-copper">
               <Calendar className="h-4 w-4" /> Book a Meeting
             </a>
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <SheetTrigger asChild className="lg:hidden">
+                <button aria-label="Open menu" className="p-2">
+                  <Menu className="h-6 w-6" />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="left">
+                <div className="flex flex-col gap-6 p-6">
+                  <a href="/" className="flex items-center gap-3">
+                    <img src={ggLogo.url} alt="Gadgets Guardians logo" className="h-9 w-9 md:h-11 md:w-11 rounded-lg object-cover" />
+                    <div className="leading-tight">
+                      <div className="font-display text-lg font-bold text-foreground">
+                        Gadgets <span className="text-accent">Guardians</span>
+                      </div>
+                    </div>
+                  </a>
+                  <nav className="flex flex-col gap-2">
+                    {navItems.map((n) => (
+                      <a
+                        key={n}
+                        href={`#${n.toLowerCase().replace(/\s+/g, "-")}`}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-lg font-medium text-foreground/80 hover:text-accent transition-colors py-2"
+                      >
+                        {n}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
@@ -241,7 +260,7 @@ function Hero() {
         <div className="absolute -top-20 -left-20 h-96 w-96 rounded-full bg-copper/40 blur-[120px] animate-pulse-glow" />
         <div className="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-teal-deep/80 blur-[120px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
       </div>
-      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-28 grid lg:grid-cols-12 gap-12 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 md:px-6 pt-20 pb-28 grid lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-6">
           <span className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/5 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-cream/80">
             <Sparkles className="h-3.5 w-3.5 text-copper" /> Award-winning tech agency
@@ -286,7 +305,7 @@ function Hero() {
             <div className="absolute -top-4 -left-4 md:-left-8 rounded-2xl bg-cream text-teal-darker px-4 py-3 shadow-elegant animate-float-fast">
               <div className="flex items-center gap-2">
                 <div className="h-9 w-9 rounded-xl bg-copper-gradient flex items-center justify-center text-white"><Activity className="h-5 w-5" /></div>
-                <div>
+                <div className="min-w-0">
                   <div className="text-[10px] uppercase tracking-wider opacity-60">Organic ↑</div>
                   <div className="font-display font-bold text-lg leading-none">+312%</div>
                 </div>
@@ -295,7 +314,7 @@ function Hero() {
             <div className="absolute -bottom-4 -right-4 md:-right-6 rounded-2xl bg-cream text-teal-darker px-4 py-3 shadow-elegant animate-float-fast" style={{ animationDelay: "1.2s" }}>
               <div className="flex items-center gap-2">
                 <div className="h-9 w-9 rounded-xl bg-teal-deep flex items-center justify-center text-cream"><MousePointerClick className="h-5 w-5" /></div>
-                <div>
+                <div className="min-w-0">
                   <div className="text-[10px] uppercase tracking-wider opacity-60">Avg. ROAS</div>
                   <div className="font-display font-bold text-lg leading-none">6.8x</div>
                 </div>
@@ -322,7 +341,7 @@ function TrustStrip() {
   ];
   return (
     <section className="border-y border-border bg-card overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-center gap-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6 py-8 flex flex-col md:flex-row items-center gap-6">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground shrink-0">Certified Partners</p>
         <div className="relative w-full overflow-hidden">
           <div className="flex gap-12 animate-marquee whitespace-nowrap">
@@ -340,7 +359,7 @@ function TrustStrip() {
 function Services() {
   return (
     <section id="services" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-accent">What we do</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold text-balance">
@@ -350,7 +369,7 @@ function Services() {
             Replace five vendors with one accountable partner — strategy, execution and reporting under one roof.
           </p>
         </div>
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s) => (
             <div
               key={s.title}
@@ -373,7 +392,7 @@ function Services() {
 function Pricing() {
   return (
     <section id="pricing" className="py-24 bg-muted/40">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-balance">
             Our Cost-Effective Service Pricing
@@ -383,7 +402,7 @@ function Pricing() {
             enterprises, helping them grow first. Every business deserves a chance to thrive online.
           </p>
         </div>
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {pricing.map((p) => (
             <div
               key={p.name}
@@ -434,7 +453,7 @@ function WhyUs() {
   ];
   return (
     <section className="py-24">
-      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-10 items-center">
+      <div className="mx-auto max-w-7xl px-4 md:px-6 grid lg:grid-cols-2 gap-10 items-center">
         <div className="space-y-5">
           {points.map((p, i) => (
             <div
@@ -446,7 +465,7 @@ function WhyUs() {
               <div className="h-14 w-14 shrink-0 rounded-xl bg-card flex items-center justify-center shadow-card-soft">
                 <p.icon className="h-7 w-7 text-foreground" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <h3 className="font-display text-lg md:text-xl font-bold">{p.title}</h3>
                 <p className="text-sm text-muted-foreground mt-1">{p.desc}</p>
               </div>
@@ -459,10 +478,10 @@ function WhyUs() {
           <div className="absolute top-5 left-5 inline-flex items-center gap-2 rounded-full bg-card/90 backdrop-blur px-4 py-2 text-xs font-semibold text-foreground">
             <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" /> Gadgets Guardians HQ
           </div>
-          <button aria-label="Play video" className="absolute inset-0 m-auto h-20 w-20 rounded-full bg-cream/95 flex items-center justify-center shadow-elegant hover:scale-110 transition">
+          <button type="button" aria-label="Play video" className="absolute inset-0 m-auto h-20 w-20 rounded-full bg-cream/95 flex items-center justify-center shadow-elegant hover:scale-110 transition">
             <Play className="h-8 w-8 text-teal-deep ml-1 fill-teal-deep" />
           </button>
-          <div className="absolute bottom-5 left-5 right-5 grid grid-cols-3 gap-3">
+          <div className="absolute bottom-5 left-5 right-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               { v: "400+", l: "Digital Experts" },
               { v: "15+", l: "Countries Served" },
@@ -484,7 +503,7 @@ function WhyUs() {
 function VideoTestimonials() {
   return (
     <section id="testimonials" className="py-24 bg-muted/40">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-balance">Clients Recommend Us</h2>
           <p className="mt-4 text-muted-foreground text-lg">
@@ -492,13 +511,13 @@ function VideoTestimonials() {
             <span className="text-accent underline underline-offset-4 font-semibold">1000+ satisfied clients</span> to see how we've helped them grow their online business.
           </p>
         </div>
-        <div className="mt-14 grid md:grid-cols-3 gap-5">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5">
           {testimonials.map((t) => (
             <div key={t.name} className="relative rounded-2xl overflow-hidden bg-card shadow-card-soft hover:shadow-elegant transition group cursor-pointer">
               <div className="relative aspect-[4/5]">
                 <img src={t.img} alt={t.name} loading="lazy" width={800} height={1024} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-teal-darker/85 via-teal-darker/10 to-transparent" />
-                <button aria-label={`Play ${t.name} testimonial`} className="absolute bottom-5 right-5 h-14 w-14 rounded-full bg-cream/95 flex items-center justify-center shadow-elegant hover:scale-110 transition">
+                <button type="button" aria-label={`Play ${t.name} testimonial`} className="absolute bottom-5 right-5 h-14 w-14 rounded-full bg-cream/95 flex items-center justify-center shadow-elegant hover:scale-110 transition">
                   <Play className="h-6 w-6 text-teal-deep ml-0.5 fill-teal-deep" />
                 </button>
                 <div className="absolute bottom-5 left-5 text-cream">
@@ -518,14 +537,14 @@ function VideoTestimonials() {
 function Process() {
   return (
     <section id="process" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-accent">How we work</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold text-balance">
             A proven 4-step process that compounds growth.
           </h2>
         </div>
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {process.map((p) => (
             <div key={p.step} className="rounded-2xl bg-card border border-border p-7 relative overflow-hidden">
               <div className="font-display text-7xl font-bold text-copper/15 absolute -top-2 -right-2 select-none">{p.step}</div>
@@ -546,7 +565,7 @@ function Process() {
 function WorldMap() {
   return (
     <section className="py-24 bg-muted/40">
-      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-10 items-center">
+      <div className="mx-auto max-w-7xl px-4 md:px-6 grid lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-4 text-center lg:text-left">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-balance leading-tight">
             Satisfied Customers Around The World
@@ -579,7 +598,7 @@ function WorldMap() {
 function Blog() {
   return (
     <section id="blog" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
             <p className="text-xs uppercase tracking-[0.25em] text-accent">From the blog</p>
@@ -591,7 +610,7 @@ function Blog() {
             View all articles <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
           {blogs.map((b) => (
             <article key={b.title} className="group rounded-2xl overflow-hidden bg-card border border-border hover:shadow-elegant hover:-translate-y-1 transition-all">
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -619,12 +638,14 @@ function Blog() {
 function CTA() {
   return (
     <section id="contact" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="relative overflow-hidden rounded-[2rem] bg-hero p-10 md:p-16 text-cream shadow-elegant">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="relative overflow-hidden rounded-[2rem] bg-hero p-6 sm:p-8 md:p-12 lg:p-16">
           <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-copper/30 blur-3xl" />
-          <div className="relative grid lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight text-cream text-balance">
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+            {/* <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center"></div> */}
+            <div className="min-w-0">
+              {/* <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight text-cream text-balance"> */}
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight break-words text-cream">
                 Let's build something <span className="text-copper">worth guarding.</span>
               </h2>
               <p className="mt-5 text-cream/75 max-w-lg">
@@ -633,17 +654,17 @@ function CTA() {
               </p>
             </div>
             <div className="flex flex-col gap-3">
-              <a href="mailto:hello@gadgetsguardianstech.com" className="flex items-center justify-between rounded-2xl bg-cream/[0.06] border border-cream/15 px-6 py-5 hover:bg-cream/[0.1] transition">
-                <span className="flex items-center gap-4"><Mail className="h-5 w-5 text-copper" /><span className="text-cream">hello@gadgetsguardianstech.com</span></span>
-                <ArrowRight className="h-5 w-5" />
+              <a href="mailto:hello@gadgetsguardianstech.com" className="flex items-center justify-between gap-3 rounded-2xl bg-cream/[0.06] border border-cream/15 px-6 py-5 hover:bg-cream/[0.1] transition">
+                <span className="flex items-center gap-4"><Mail className="h-5 w-5 text-copper flex-shrink-0" /><span className="text-cream break-all text-sm sm:text-base">hello@gadgetsguardianstech.com</span></span>
+                <ArrowRight className="h-5 w-5 flex-shrink-0" />
               </a>
-              <a href="tel:+910000000000" className="flex items-center justify-between rounded-2xl bg-cream/[0.06] border border-cream/15 px-6 py-5 hover:bg-cream/[0.1] transition">
-                <span className="flex items-center gap-4"><Phone className="h-5 w-5 text-copper" /><span className="text-cream">+91 00000 00000</span></span>
-                <ArrowRight className="h-5 w-5" />
+              <a href="tel:+910000000000" className="flex items-center justify-between gap-3 rounded-2xl bg-cream/[0.06] border border-cream/15 px-6 py-5 hover:bg-cream/[0.1] transition">
+                <span className="flex items-center gap-4"><Phone className="h-5 w-5 text-copper" /><span className="text-cream break-all text-sm sm:text-base">+91 00000 00000</span></span>
+                <ArrowRight className="h-5 w-5 flex-shrink-0" />
               </a>
-              <a href="https://wa.me/910000000000" className="flex items-center justify-between rounded-2xl bg-copper-gradient text-white px-6 py-5 hover:opacity-95 transition shadow-copper">
+              <a href="https://wa.me/910000000000" className="flex items-center justify-between gap-3 rounded-2xl bg-copper-gradient text-white px-6 py-5 hover:opacity-95 transition shadow-copper">
                 <span className="flex items-center gap-4"><MessageCircle className="h-5 w-5" /><span className="font-semibold">Chat on WhatsApp</span></span>
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-5 w-5 flex-shrink-0" />
               </a>
             </div>
           </div>
@@ -667,7 +688,7 @@ function Footer() {
     <footer className="bg-teal-darker text-cream">
       {/* Top headline */}
       <div className="border-b border-cream/10">
-        <div className="mx-auto max-w-7xl px-6 py-12 text-center">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-12 text-center">
           <h3 className="font-display text-2xl md:text-3xl font-bold text-cream">The Sun Never Sets on Gadgets Guardians</h3>
           <div className="mt-10 grid grid-cols-2 md:grid-cols-5 gap-8">
             {offices.map((o) => (
@@ -684,8 +705,8 @@ function Footer() {
       </div>
 
       {/* Middle columns */}
-      <div className="mx-auto max-w-7xl px-6 py-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div>
+      <div className="mx-auto max-w-7xl px-4 md:px-6 py-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="min-w-0">
           <div className="flex items-center gap-3">
             <img src={ggLogo.url} alt="Gadgets Guardians" className="h-12 w-12 rounded-lg" />
             <div className="font-display text-xl font-bold">Gadgets <span className="text-copper">Guardians</span></div>
@@ -702,7 +723,7 @@ function Footer() {
             ))}
           </div>
         </div>
-        <div>
+        <div className="min-w-0">
           <h4 className="text-xs uppercase tracking-[0.2em] text-copper font-semibold">Our Company</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-cream/75">
             {["About Us", "Contact Us", "Client Reviews", "Locations", "Video Testimonials"].map((l) => (
@@ -710,7 +731,7 @@ function Footer() {
             ))}
           </ul>
         </div>
-        <div>
+        <div className="min-w-0">
           <h4 className="text-xs uppercase tracking-[0.2em] text-copper font-semibold">Resources</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-cream/75">
             {["Portfolio", "PPC Portfolio", "SMO Portfolios", "SEO Portfolios", "Case Studies", "Latest Blogs"].map((l) => (
@@ -718,7 +739,7 @@ function Footer() {
             ))}
           </ul>
         </div>
-        <div>
+        <div className="min-w-0">
           <h4 className="text-xs uppercase tracking-[0.2em] text-copper font-semibold">Packages</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-cream/75">
             {["SEO Small Business", "Digital Marketing", "AI SEO Packages", "Web Development", "Mobile App Plans"].map((l) => (
@@ -735,7 +756,7 @@ function Footer() {
 
       {/* Tag cloud */}
       <div className="border-t border-cream/10">
-        <div className="mx-auto max-w-7xl px-6 py-8 flex flex-wrap gap-2">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-8 flex flex-wrap justify-center gap-x-2 gap-y-1">
           {tagCloud.map((t) => (
             <a key={t} href="#" className="text-[11px] text-cream/65 hover:text-copper transition border-r border-cream/10 pr-2 last:border-0">{t}</a>
           ))}
@@ -744,7 +765,7 @@ function Footer() {
 
       {/* Partners */}
       <div className="border-t border-cream/10">
-        <div className="mx-auto max-w-7xl px-6 py-8 grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-8 grid grid-cols-2 md:grid-cols-5 gap-4">
           {["Google Partner", "Meta Partner", "Bing Partner", "ISO Certified", "DMCA Protected"].map((p) => (
             <div key={p} className="rounded-lg bg-cream/5 border border-cream/10 px-4 py-3 text-center text-xs font-semibold text-cream/85">{p}</div>
           ))}
@@ -752,9 +773,9 @@ function Footer() {
       </div>
 
       <div className="border-t border-cream/10">
-        <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream/55">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream/55">
           <p>© {new Date().getFullYear()} Gadgets Guardians. All Rights Reserved.</p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
             <a href="#" className="hover:text-copper">Privacy Policy</a>
             <a href="#" className="hover:text-copper">Terms & Conditions</a>
             <a href="#" className="hover:text-copper">Legal Disclaimer</a>
@@ -793,14 +814,14 @@ function Testimonials() {
   ];
   return (
     <section id="reviews" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-accent">What clients say</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold text-balance">
             Loved by <span className="text-accent">200+ brands</span> worldwide.
           </h2>
         </div>
-        <div className="mt-14 grid md:grid-cols-3 gap-6">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
           {items.map((t) => (
             <div key={t.name} className="rounded-2xl bg-card border border-border p-7 shadow-card-soft hover:shadow-elegant transition flex flex-col">
               <Quote className="h-8 w-8 text-accent/70" />
@@ -810,7 +831,7 @@ function Testimonials() {
               </div>
               <div className="mt-5 flex items-center gap-3 pt-5 border-t border-border">
                 <img src={t.img} alt={t.name} className="h-12 w-12 rounded-full object-cover" />
-                <div>
+                <div className="min-w-0">
                   <div className="font-display font-bold">{t.name}</div>
                   <div className="text-xs text-muted-foreground">{t.role}</div>
                 </div>
@@ -853,7 +874,7 @@ function FAQ() {
   ];
   return (
     <section id="faq" className="py-24 bg-muted/40">
-      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12">
+      <div className="mx-auto max-w-7xl px-4 md:px-6 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-4">
           <p className="text-xs uppercase tracking-[0.25em] text-accent">FAQs</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold text-balance leading-tight">
